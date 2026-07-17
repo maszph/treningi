@@ -2,14 +2,115 @@
 
 const players = [
 
-"Jan Kowalski",
-"Adam Nowak",
-"Piotr Wiśniewski",
-"Michał Zieliński",
-"Kacper Mazur",
-"Jakub Wójcik",
-"Filip Kamiński",
-"Mateusz Pawlak"
+{
+name:"Franciszek Lubosik",
+birth:"2013"
+},
+
+{
+name:"Karol Wawrzyniak",
+birth:"2010"
+},
+
+{
+name:"Piotr Szastok",
+birth:"2010"
+},
+
+{
+name:"Marcin Kalus",
+birth:"2011"
+},
+
+{
+name:"Ksawery Jarzębak",
+birth:"2012"
+},
+
+{
+name:"Nikodem Młoksiewicz",
+birth:"2013"
+},
+
+{
+name:"Jakub Augustyniak",
+birth:"2013"
+},
+
+{
+name:"Mateusz Bajger",
+birth:"2013"
+},
+
+{
+name:"Miłosz Piotrowski",
+birth:"2013"
+},
+
+{
+name:"Michał Musiolik",
+birth:"2011"
+},
+
+{
+name:"Filip Solorz",
+birth:"2011"
+},
+
+{
+name:"Filip Dąbrowski",
+birth:"2011"
+},
+
+{
+name:"Dawid Hyczko-Wróblewski",
+birth:"2012"
+},
+
+{
+name:"Jakub Białas",
+birth:"2010"
+},
+
+{
+name:"Filip Hojka",
+birth:"2011"
+},
+
+{
+name:"Patryk Twardoch",
+birth:"2012"
+},
+
+{
+name:"Szymon Machtyk",
+birth:"2012"
+},
+
+{
+name:"Filip Horzela",
+birth:"2013"
+},
+
+{
+name:"Kacper Gajowski",
+birth:"2013"
+},
+
+{
+name:"Wojciech Szudy",
+birth:"2010"
+},
+
+{
+name:"Maciej Nehrebecki",
+birth:"2013"
+},
+
+{
+name:"Miłosz Miller",
+birth:"2012"
+}
 
 ];
 
