@@ -2,7 +2,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzlUGO_wXKkDxARLX0RP3FJ
 
 async function loadFullStats() {
   const tableDiv = document.getElementById("statsTable");
-  tableDiv.innerHTML = "<p>Ładowanie pełnej historii z Google Sheets...</p>";
+  tableDiv.innerHTML = "<p>Ładowanie pełnej historii...</p>";
 
   try {
     const response = await fetch(API_URL, {
@@ -11,6 +11,10 @@ async function loadFullStats() {
     });
 
     const allRecords = await response.json();
+
+    if (allRecords.error || !Array.isArray(allRecords)) {
+      throw new Error(allRecords.error || "Błąd formatu danych");
+    }
 
     const playerStats = {};
 
@@ -28,7 +32,6 @@ async function loadFullStats() {
       }
     });
 
-    // Sortowanie po frekwencji malejąco
     const sorted = Object.entries(playerStats)
       .sort((a, b) => (b[1].present / b[1].total) - (a[1].present / a[1].total));
 
@@ -62,10 +65,9 @@ async function loadFullStats() {
     tableDiv.innerHTML = html;
 
   } catch (e) {
-    console.error(e);
-    tableDiv.innerHTML = `<p>Błąd pobierania z Google Sheets.<br>Spróbuj odświeżyć stronę (Ctrl + Shift + R).</p>`;
+    console.error("Błąd:", e);
+    tableDiv.innerHTML = `<p>Błąd połączenia z Google Sheets.<br>Spróbuj odświeżyć stronę (Ctrl + Shift + R).</p>`;
   }
 }
 
-// Uruchom po załadowaniu strony
 document.addEventListener("DOMContentLoaded", loadFullStats);
