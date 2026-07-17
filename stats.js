@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbztv1UfmeAoAdniHclDGJYRvHM1hYc1K1ouMG3wxtYe8_FBIWgSQ8zvI7Ko1I2oERe4/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzlUGO_wXKkDxARLX0RP3FJ2z3MAYzFdVNKxfLJiIWHhYLVrxH1v6aKJxW6zHVUYC_P/exec";
 
 async function loadFullStats() {
   const tableDiv = document.getElementById("statsTable");
