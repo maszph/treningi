@@ -2,7 +2,7 @@ const API_URL =
 "Whttps://script.google.com/macros/s/AKfycbxX2PIGNsE4gJ6Aa9CVoJJvbdppiXimi8RbXw4jBP5m8QOT1N5blzUe6XbFPfPGcis6/exec
 ";
 
-// Lista zawodników drużyny
+// Lista zawodników
 
 const players = [
 
@@ -138,32 +138,36 @@ players.forEach(player => {
 
 const div = document.createElement("div");
 
-div.className="player";
+div.className = "player";
 
 
 div.innerHTML = `
 
 <span class="player-name">
+
 ${player.name} (${player.birth})
+
 </span>
 
 
 <input 
-type="checkbox"
-class="attendance"
-data-player="${player.name}"
-checked
->
 
+type="checkbox"
+
+class="attendance"
+
+data-id="${player.name}"
+
+checked>
 
 `;
+
 
 
 playersBox.appendChild(div);
 
 
 });
-
 
 
 
@@ -175,14 +179,7 @@ document
 .addEventListener("click",()=>{
 
 
-const date = dateInput.value;
-
-const type = document.getElementById("type").value;
-
-
-
-const attendance=[];
-
+const attendance = [];
 
 
 document
@@ -192,57 +189,34 @@ document
 
 attendance.push({
 
-date:date,
+date: dateInput.value,
 
-type:type,
+type: document.getElementById("type").value,
 
-player:box.dataset.player,
+player: box.dataset.id,
 
-present:box.checked
-
-
-});
-
+present: box.checked
 
 });
 
+
+});
 
 
 console.log(attendance);
 
 
 
-fetch(API_URL, {
+localStorage.setItem(
 
-method:"POST",
+"attendance",
 
-body:JSON.stringify(attendance)
-
-})
-
-.then(response=>response.json())
-
-.then(data=>{
-
-alert("Zapisano do Google Sheets!");
-
-})
-
-.catch(error=>{
-
-console.log(error);
-
-alert("Błąd zapisu");
-
-});
-
-
-
-alert(
-
-"Zapisano obecność!"
+JSON.stringify(attendance)
 
 );
 
+
+
+alert("Zapisano obecność!");
 
 });
