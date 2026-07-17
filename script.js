@@ -1,5 +1,5 @@
 // === KONFIGURACJA ===
-const API_URL = ""; // ← Wklej tutaj pełny URL z Google Apps Script po wdrożeniu
+const API_URL = "https://script.google.com/macros/s/AKfycbxX2PIGNsE4gJ6Aa9CVoJJvbdppiXimi8RbXw4jBP5m8QOT1N5blzUe6XbFPfPGcis6/exec";
 
 // Lista zawodników – zgodna z arkuszem "Zawodnicy"
 const players = [
@@ -72,22 +72,21 @@ document.getElementById("saveBtn").addEventListener("click", () => {
 
   console.log("Zapisuję:", attendance);
 
-  // Zapis lokalny
+  // Zapis lokalny + Google Sheets
   localStorage.setItem("attendance", JSON.stringify(attendance));
 
-  if (API_URL) {
-    fetch(API_URL, {
-      method: "POST",
-      body: JSON.stringify(attendance),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(r => r.json())
-    .then(data => alert("✅ Zapisano w Google Sheets!"))
-    .catch(err => {
-      console.error(err);
-      alert("❌ Błąd połączenia z Google Sheets");
-    });
-  } else {
-    alert("✅ Zapisano lokalnie. Wklej URL Apps Script aby działało online!");
-  }
+  fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify(attendance),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Success:", data);
+    alert("✅ Zapisano obecność w Google Sheets!");
+  })
+  .catch(error => {
+    console.error("Błąd:", error);
+    alert("❌ Błąd zapisu. Sprawdź konsolę (F12).");
+  });
 });
