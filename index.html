@@ -1,91 +1,41 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Frekwencja drużyny</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frekwencja drużyny</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
-
 <body>
+    <div class="container">
+        <header>
+            <h1>⚽ Frekwencja drużyny</h1>
+            <p>Rejestracja obecności zawodników</p>
+            <p><a href="stats.html" style="color:#1565c0; font-weight:600;">📊 Zobacz statystyki →</a></p>
+        </header>
 
+        <div class="card">
+            <label>Data jednostki</label>
+            <input type="date" id="date">
 
-<div class="container">
+            <label>Typ jednostki</label>
+            <select id="type">
+                <option>Trening</option>
+                <option>Sparing</option>
+                <option>Mecz ligowy</option>
+                <option>Turniej</option>
+            </select>
 
+            <h2>Zawodnicy</h2>
+            <div id="players"></div>
 
-<header>
+            <button id="saveBtn">Zapisz obecność</button>
+        </div>
 
-<h1>⚽ Frekwencja drużyny</h1>
+        <footer>System Frekwencji © 2026</footer>
+    </div>
 
-<p>Rejestracja obecności zawodników</p>
-
-</header>
-
-
-
-<div class="card">
-
-
-<label>Data jednostki</label>
-
-<input type="date" id="date">
-
-
-
-<label>Typ jednostki</label>
-
-<select id="type">
-
-<option>Trening</option>
-
-<option>Sparing</option>
-
-<option>Mecz ligowy</option>
-
-<option>Turniej</option>
-
-</select>
-
-
-
-<h2>Zawodnicy</h2>
-
-
-<div id="players"></div>
-
-
-
-<button id="saveBtn">
-
-Zapisz obecność
-
-</button>
-
-
-</div>
-
-
-<footer>
-
-System Frekwencji © 2026
-
-</footer>
-
-
-</div>
-
-
-<script src="script.js"></script>
-
-
+    <script src="script.js"></script>
 </body>
-
 </html>
