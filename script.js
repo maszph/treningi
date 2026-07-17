@@ -140,14 +140,14 @@ div.className="player";
 div.innerHTML = `
 
 <span class="player-name">
-${player}
+${player.name} (${player.birth})
 </span>
 
 
 <input 
 type="checkbox"
 class="attendance"
-data-player="${player}"
+data-player="${player.name}"
 checked
 >
 
