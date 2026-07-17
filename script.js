@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzlUGO_wXKkDxARLX0RP3FJ2z3MAYzFdVNKxfLJiIWHhYLVrxH1v6aKJxW6zHVUYC_P/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxuN4rwCBr8GguYUDD62c2-IkmEDyZXLCFqYVC7ccwSJRQdr3N4ubud2wr_pD_jL2QT/exec";
 
 const players = [
   { id: 1, name: "Franciszek Lubosik", birth: "2013" },
