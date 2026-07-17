@@ -75,10 +75,12 @@ document.getElementById("saveBtn").addEventListener("click", () => {
   // Zapis lokalny + Google Sheets
   localStorage.setItem("attendance", JSON.stringify(attendance));
 
-  fetch(API_URL, {
+    fetch(API_URL, {
     method: "POST",
-    body: JSON.stringify(attendance),
-    headers: { "Content-Type": "application/json" }
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"   // ← to jest klucz!
+    },
+    body: JSON.stringify(attendance)
   })
   .then(response => response.json())
   .then(data => {
