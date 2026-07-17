@@ -1,6 +1,6 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxvW4pXblxkoWyI-kyXIVlnsrlzUpymo23a0LpSFXroC_gIGOsHZOaGQhTrc__kuueQ/exec";
 
-const players = [
+let players = [
   { id: 1, name: "Franciszek Lubosik", birth: "2013" },
   { id: 2, name: "Karol Wawrzyniak", birth: "2010" },
   { id: 3, name: "Piotr Szastok", birth: "2010" },
@@ -45,6 +45,7 @@ function renderPlayers() {
 
 renderPlayers();
 
+// ========== ZAPIS OBECNOŚCI ==========
 document.getElementById("saveBtn").addEventListener("click", () => {
   const attendance = [];
   document.querySelectorAll(".attendance").forEach(box => {
@@ -57,19 +58,51 @@ document.getElementById("saveBtn").addEventListener("click", () => {
     });
   });
 
-  // Zapis do Google Sheets
-    fetch(API_URL, {
+  fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(attendance),
-    mode: "no-cors"   // omija CORS
+    mode: "no-cors"
   })
-  .then(() => {
-    alert("✅ Zapisano w Google Sheets!");
-  })
-  .catch(() => {
-    alert("✅ Zapisano (prawdopodobnie pomyślnie). Sprawdź arkusz.");
-  });
+  .then(() => alert("✅ Zapisano obecność!"))
+  .catch(() => alert("✅ Zapisano (sprawdź arkusz)"));
 
   localStorage.setItem("attendance", JSON.stringify(attendance));
+});
+
+// ========== DODAWANIE NOWEGO ZAWODNIKA ==========
+document.getElementById("addPlayerBtn").addEventListener("click", () => {
+  const name = document.getElementById("newName").value.trim();
+  const birth = document.getElementById("newBirth").value.trim();
+
+  if (!name || !birth) {
+    alert("Wypełnij imię i rok urodzenia!");
+    return;
+  }
+
+  // Nowe ID = największe + 1
+  const newId = players.length > 0 ? Math.max(...players.map(p => p.id)) + 1 : 1;
+
+  const newPlayer = { id: newId, name: name, birth: birth };
+  players.push(newPlayer);
+  renderPlayers();
+
+  // Czyścimy pola
+  document.getElementById("newName").value = "";
+  document.getElementById("newBirth").value = "";
+
+  // Wysyłamy do Google Sheets
+  fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      action: "addPlayer",
+      id: newId,
+      name: name,
+      birth: birth
+    }),
+    mode: "no-cors"
+  })
+  .then(() => alert(`✅ Dodano zawodnika: ${name}`))
+  .catch(() => alert(`✅ Dodano lokalnie: ${name}`));
 });
