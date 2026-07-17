@@ -1,7 +1,7 @@
 // === KONFIGURACJA ===
-const API_URL = "https://script.google.com/macros/s/AKfycbxX2PIGNsE4gJ6Aa9CVoJJvbdppiXimi8RbXw4jBP5m8QOT1N5blzUe6XbFPfPGcis6/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwQG81z6ODF-RESrreoQerMq07vnv5gDfopxYtnU_JN5dq03mPjA1LCc-MSWKNjO8aA/exec";
 
-// Lista zawodników – zgodna z arkuszem "Zawodnicy"
+// Lista zawodników
 const players = [
   { id: 1, name: "Franciszek Lubosik", birth: "2013" },
   { id: 2, name: "Karol Wawrzyniak", birth: "2010" },
@@ -33,7 +33,7 @@ const dateInput = document.getElementById("date");
 // Ustaw dzisiejszą datę
 if (dateInput) dateInput.valueAsDate = new Date();
 
-// Render listy zawodników
+// Tworzenie listy zawodników
 function renderPlayers() {
   playersBox.innerHTML = "";
   players.forEach(player => {
@@ -72,13 +72,14 @@ document.getElementById("saveBtn").addEventListener("click", () => {
 
   console.log("Zapisuję:", attendance);
 
-  // Zapis lokalny + Google Sheets
+  // Zapis lokalny
   localStorage.setItem("attendance", JSON.stringify(attendance));
 
-    fetch(API_URL, {
+  // Wysyłka do Google Sheets
+  fetch(API_URL, {
     method: "POST",
     headers: {
-      "Content-Type": "text/plain;charset=utf-8"   // ← to jest klucz!
+      "Content-Type": "text/plain;charset=utf-8"
     },
     body: JSON.stringify(attendance)
   })
