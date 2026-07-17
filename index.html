@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -17,44 +16,45 @@
 
 <div class="container">
 
-    <header>
+<header>
 
-        <h1>⚽ System Frekwencji</h1>
+<h1>⚽ System Frekwencji</h1>
 
-        <p>Zarządzanie obecnościami na treningach</p>
+<p>Zarządzanie obecnościami</p>
 
-    </header>
+</header>
 
-    <section class="card">
+<div class="card">
 
-        <h2>Wybierz grupę</h2>
+<label>Grupa</label>
 
-        <select id="group">
+<select id="group">
+    <option value="Orlik">Orlik</option>
+    <option value="Młodzik">Młodzik</option>
+    <option value="Junior">Junior</option>
+</select>
 
-            <option>Orlik</option>
-            <option>Młodzik</option>
-            <option>Trampkarz</option>
-            <option>Junior</option>
+<label>Data treningu</label>
 
-        </select>
+<input type="date" id="date">
 
-        <h2>Data treningu</h2>
+<hr>
 
-        <input type="date" id="date">
+<h2>Lista zawodników</h2>
 
-        <button id="startBtn">
+<div id="players"></div>
 
-            Rozpocznij
+<button id="saveBtn">
+Zapisz obecność
+</button>
 
-        </button>
+</div>
 
-    </section>
+<footer>
 
-    <footer>
+Projekt Frekwencja
 
-        Projekt Frekwencja © 2026
-
-    </footer>
+</footer>
 
 </div>
 
