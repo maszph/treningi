@@ -6,60 +6,69 @@
 }
 
 body {
-  background: #0f0f0f;
+  background: #0a0a0a;
   color: #eee;
-  line-height: 1.6;
 }
 
 .container {
-  width: 100%;
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 20px;
 }
 
 header {
   text-align: center;
-  margin-bottom: 30px;
-  padding: 20px 0;
-  background: linear-gradient(135deg, #c62828, #000);
-  border-radius: 16px;
-  color: white;
+  padding: 25px 0 20px;
+  background: linear-gradient(135deg, #c62828, #1a1a1a);
+  border-radius: 20px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.logo-placeholder {
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 4px 15px rgba(198, 40, 40, 0.4);
 }
 
 header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 8px;
+  font-size: 2.1rem;
+  margin-bottom: 5px;
 }
 
 .card {
-  background: #1a1a1a;
-  padding: 25px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  margin-bottom: 25px;
+  background: #1f1f1f;
+  padding: 28px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
 }
 
-label {
+button, .btn {
   display: block;
-  font-weight: 600;
-  margin: 15px 0 8px;
-  color: #ff5252;
-}
-
-input, select {
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  background: #2a2a2a;
+  max-width: 320px;
+  margin: 15px auto;
+  padding: 16px;
+  background: #c62828;
   color: white;
-  font-size: 16px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-h2 {
-  color: #ff5252;
-  margin: 25px 0 15px;
+button:hover, .btn:hover {
+  background: #e53935;
+  transform: translateY(-3px);
 }
 
 .player {
@@ -70,38 +79,20 @@ h2 {
   border-bottom: 1px solid #333;
 }
 
-.player-name {
-  font-size: 1.05rem;
-}
-
-button {
-  width: 100%;
-  margin-top: 25px;
-  padding: 16px;
-  border: none;
-  border-radius: 12px;
-  background: #c62828;
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #e53935;
-  transform: translateY(-2px);
-}
-
 footer {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
   color: #666;
-  font-size: 0.9rem;
 }
 
-/* Responsywność */
+/* Wykres */
+canvas {
+  max-width: 100%;
+  margin: 20px 0 30px;
+}
+
+/* Mobile */
 @media (max-width: 600px) {
   .container { padding: 15px; }
-  header h1 { font-size: 1.8rem; }
+  header h1 { font-size: 1.7rem; }
 }
