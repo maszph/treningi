@@ -23,7 +23,6 @@ const players = [
   { id: 20, name: "Wojciech Szudy", birth: "2010" },
   { id: 21, name: "Maciej Nehrebecki", birth: "2013" },
   { id: 22, name: "Miłosz Miller", birth: "2012" }
-  { id: 23, name: "Mikołaj Kosowski", birth: "2010" }
 ];
 
 const playersBox = document.getElementById("players");
