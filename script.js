@@ -1,101 +1,127 @@
-const groups = {
+// Lista zawodników drużyny
 
-Orlik:[
+const players = [
+
 "Jan Kowalski",
 "Adam Nowak",
 "Piotr Wiśniewski",
-"Michał Zieliński"
-],
-
-Młodzik:[
-"Kacper Lis",
+"Michał Zieliński",
+"Kacper Mazur",
 "Jakub Wójcik",
-"Mateusz Kaczmarek",
-"Filip Kamiński"
-],
+"Filip Kamiński",
+"Mateusz Pawlak"
 
-Junior:[
-"Patryk Mazur",
-"Oskar Lewandowski",
-"Dominik Król",
-"Maciej Pawlak"
-]
+];
 
-};
 
-const groupSelect=document.getElementById("group");
 
-const playersDiv=document.getElementById("players");
+const playersBox = document.getElementById("players");
 
-const dateInput=document.getElementById("date");
+const dateInput = document.getElementById("date");
 
-dateInput.valueAsDate=new Date();
 
-function showPlayers(){
+// ustawienie dzisiejszej daty
 
-playersDiv.innerHTML="";
+dateInput.valueAsDate = new Date();
 
-const players=groups[groupSelect.value];
 
-players.forEach(player=>{
 
-const row=document.createElement("div");
+// tworzenie listy zawodników
 
-row.className="player";
+players.forEach(player => {
 
-row.innerHTML=`
 
-<label>${player}</label>
+const div = document.createElement("div");
 
-<input
+div.className="player";
+
+
+div.innerHTML = `
+
+<span class="player-name">
+${player}
+</span>
+
+
+<input 
 type="checkbox"
 class="attendance"
 data-player="${player}"
-checked>
+checked
+>
+
 
 `;
 
-playersDiv.appendChild(row);
+
+playersBox.appendChild(div);
+
 
 });
 
-}
 
-groupSelect.addEventListener("change",showPlayers);
 
-showPlayers();
+
+
+// zapis obecności
 
 document
 .getElementById("saveBtn")
 .addEventListener("click",()=>{
 
-const data=[];
+
+const date = dateInput.value;
+
+const type = document.getElementById("type").value;
+
+
+
+const attendance=[];
+
+
 
 document
 .querySelectorAll(".attendance")
 .forEach(box=>{
 
-data.push({
 
-group:groupSelect.value,
+attendance.push({
 
-date:dateInput.value,
+date:date,
+
+type:type,
 
 player:box.dataset.player,
 
 present:box.checked
 
-});
 
 });
+
+
+});
+
+
+
+console.log(attendance);
+
+
 
 localStorage.setItem(
+
 "attendance",
-JSON.stringify(data)
+
+JSON.stringify(attendance)
+
 );
 
-alert("Obecność została zapisana lokalnie.");
 
-console.log(data);
+
+alert(
+
+"Zapisano obecność!"
+
+);
+
 
 });
