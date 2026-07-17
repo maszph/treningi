@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxvW4pXblxkoWyI-kyXIVlnsrlzUpymo23a0LpSFXroC_gIGOsHZOaGQhTrc__kuueQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyQovTGejKvLt7b7rry_1kDI6Jkms4Sk2I7FvY1dXjU_SWBbYxJ0rIbVQs2bQGi8DA6/exec";
 let myChart = null;
 
 async function loadFullStats() {
