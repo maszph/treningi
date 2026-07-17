@@ -21,7 +21,7 @@ async function loadFullStats() {
 
   } catch (e) {
     console.log("Sheets nie działa, używam localStorage", e);
-    // Fallback na localStorage
+    // Fallback na localSto1rage
     const localData = JSON.parse(localStorage.getItem("attendance") || "[]");
     processRecords(localData, tableDiv);
   }
