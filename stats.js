@@ -2,10 +2,9 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzlUGO_wXKkDxARLX0RP3FJ
 
 async function loadFullStats() {
   const tableDiv = document.getElementById("statsTable");
-  tableDiv.innerHTML = "<p>Ładowanie pełnej historii...</p>";
+  tableDiv.innerHTML = "<p>Ładowanie pełnej historii z Google Sheets...</p>";
 
   try {
-    // Pobierz wszystkie rekordy z Sheets
     const response = await fetch(API_URL, {
       method: "GET",
       headers: { "Content-Type": "text/plain;charset=utf-8" }
@@ -29,7 +28,7 @@ async function loadFullStats() {
       }
     });
 
-    // Sortowanie po frekwencji
+    // Sortowanie po frekwencji malejąco
     const sorted = Object.entries(playerStats)
       .sort((a, b) => (b[1].present / b[1].total) - (a[1].present / a[1].total));
 
@@ -40,7 +39,7 @@ async function loadFullStats() {
         <thead>
           <tr style="background:#1565c0; color:white;">
             <th style="padding:12px; text-align:left;">Zawodnik</th>
-            <th style="padding:12px; text-align:center;">Jednostki</th>
+            <th style="padding:12px; text-align:center;">Liczba jednostek</th>
             <th style="padding:12px; text-align:center;">Obecności</th>
             <th style="padding:12px; text-align:center;">Frekwencja</th>
           </tr>
@@ -64,11 +63,9 @@ async function loadFullStats() {
 
   } catch (e) {
     console.error(e);
-    tableDiv.innerHTML = `<p>Błąd pobierania z Sheets.<br>Używam lokalnych danych.</p>`;
-    // fallback na localStorage
-    const local = JSON.parse(localStorage.getItem("attendance") || "[]");
-    // można tu dodać processRecords jeśli chcesz
+    tableDiv.innerHTML = `<p>Błąd pobierania z Google Sheets.<br>Spróbuj odświeżyć stronę (Ctrl + Shift + R).</p>`;
   }
 }
 
+// Uruchom po załadowaniu strony
 document.addEventListener("DOMContentLoaded", loadFullStats);
