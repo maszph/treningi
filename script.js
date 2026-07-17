@@ -1,3 +1,7 @@
+const API_URL =
+"Whttps://script.google.com/macros/s/AKfycbxX2PIGNsE4gJ6Aa9CVoJJvbdppiXimi8RbXw4jBP5m8QOT1N5blzUe6XbFPfPGcis6/exec
+";
+
 // Lista zawodników drużyny
 
 const players = [
@@ -208,13 +212,29 @@ console.log(attendance);
 
 
 
-localStorage.setItem(
+fetch(API_URL, {
 
-"attendance",
+method:"POST",
 
-JSON.stringify(attendance)
+body:JSON.stringify(attendance)
 
-);
+})
+
+.then(response=>response.json())
+
+.then(data=>{
+
+alert("Zapisano do Google Sheets!");
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+alert("Błąd zapisu");
+
+});
 
 
 
