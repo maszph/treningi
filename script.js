@@ -1,27 +1,101 @@
-const dateInput = document.getElementById("date");
+const groups = {
 
-const today = new Date();
+Orlik:[
+"Jan Kowalski",
+"Adam Nowak",
+"Piotr Wiśniewski",
+"Michał Zieliński"
+],
 
-const year = today.getFullYear();
+Młodzik:[
+"Kacper Lis",
+"Jakub Wójcik",
+"Mateusz Kaczmarek",
+"Filip Kamiński"
+],
 
-const month = String(today.getMonth() + 1).padStart(2, "0");
+Junior:[
+"Patryk Mazur",
+"Oskar Lewandowski",
+"Dominik Król",
+"Maciej Pawlak"
+]
 
-const day = String(today.getDate()).padStart(2, "0");
+};
 
-dateInput.value = `${year}-${month}-${day}`;
+const groupSelect=document.getElementById("group");
 
-document.getElementById("startBtn").addEventListener("click", () => {
+const playersDiv=document.getElementById("players");
 
-    const group = document.getElementById("group").value;
+const dateInput=document.getElementById("date");
 
-    const date = document.getElementById("date").value;
+dateInput.valueAsDate=new Date();
 
-    alert(
-`Grupa: ${group}
+function showPlayers(){
 
-Data: ${date}
+playersDiv.innerHTML="";
 
-W następnym etapie pojawi się lista zawodników.`
+const players=groups[groupSelect.value];
+
+players.forEach(player=>{
+
+const row=document.createElement("div");
+
+row.className="player";
+
+row.innerHTML=`
+
+<label>${player}</label>
+
+<input
+type="checkbox"
+class="attendance"
+data-player="${player}"
+checked>
+
+`;
+
+playersDiv.appendChild(row);
+
+});
+
+}
+
+groupSelect.addEventListener("change",showPlayers);
+
+showPlayers();
+
+document
+.getElementById("saveBtn")
+.addEventListener("click",()=>{
+
+const data=[];
+
+document
+.querySelectorAll(".attendance")
+.forEach(box=>{
+
+data.push({
+
+group:groupSelect.value,
+
+date:dateInput.value,
+
+player:box.dataset.player,
+
+present:box.checked
+
+});
+
+});
+
+localStorage.setItem(
+"attendance",
+JSON.stringify(data)
 );
+
+alert("Obecność została zapisana lokalnie.");
+
+console.log(data);
 
 });
