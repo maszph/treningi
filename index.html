@@ -9,11 +9,12 @@
 </head>
 <body>
     <div class="container">
-      <header>
-    <img src="herb.png" alt="Herb Klubu" class="club-logo">
-    <h1>⚽ Frekwencja drużyny</h1>
+        <header>
+            <img src="herb.png" alt="Herb Klubu" class="club-logo">
+            <div class="logo-placeholder">⚽</div>
+            <h1>Frekwencja drużyny</h1>
             <p>Rejestracja obecności zawodników</p>
-            <p><a href="stats.html" style="color:#1565c0;font-weight:600;">📊 Zobacz statystyki →</a></p>
+            <p><a href="stats.html" style="color:#ff5252; font-weight:600;">📊 Zobacz statystyki →</a></p>
         </header>
 
         <div class="card">
@@ -32,6 +33,18 @@
             <div id="players"></div>
 
             <button id="saveBtn">Zapisz obecność</button>
+        </div>
+
+        <!-- NOWA SEKCJA - DODAWANIE ZAWODNIKA -->
+        <div class="card" style="margin-top:25px;">
+            <h2>➕ Dodaj nowego zawodnika</h2>
+            <label>Imię i nazwisko</label>
+            <input type="text" id="newName" placeholder="np. Jan Kowalski">
+            
+            <label>Rok urodzenia</label>
+            <input type="text" id="newBirth" placeholder="np. 2013">
+            
+            <button id="addPlayerBtn">Dodaj zawodnika</button>
         </div>
 
         <footer>System Frekwencji © 2026</footer>
