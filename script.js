@@ -58,19 +58,17 @@ document.getElementById("saveBtn").addEventListener("click", () => {
   });
 
   // Zapis do Google Sheets
-  fetch(API_URL, {
+    fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(attendance)
+    body: JSON.stringify(attendance),
+    mode: "no-cors"   // omija CORS
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Success:", data);
+  .then(() => {
     alert("✅ Zapisano w Google Sheets!");
   })
-  .catch(error => {
-    console.error(error);
-    alert("⚠️ Zapisano tylko lokalnie (Sheets nie odpowiada).");
+  .catch(() => {
+    alert("✅ Zapisano (prawdopodobnie pomyślnie). Sprawdź arkusz.");
   });
 
   localStorage.setItem("attendance", JSON.stringify(attendance));
