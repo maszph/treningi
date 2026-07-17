@@ -1,8 +1,9 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxvW4pXblxkoWyI-kyXIVlnsrlzUpymo23a0LpSFXroC_gIGOsHZOaGQhTrc__kuueQ/exec";
+let myChart = null;
 
 async function loadFullStats() {
   const tableDiv = document.getElementById("statsTable");
-  tableDiv.innerHTML = "<p>Ładowanie pełnej historii...</p>";
+  tableDiv.innerHTML = "<p>Ładowanie danych i generowanie wykresu...</p>";
 
   try {
     const response = await fetch(API_URL, {
@@ -32,9 +33,11 @@ async function loadFullStats() {
       }
     });
 
+    // Sortowanie
     const sorted = Object.entries(playerStats)
       .sort((a, b) => (b[1].present / b[1].total) - (a[1].present / a[1].total));
 
+    // Tabela
     let html = `<h3>Frekwencja ogółem — ${Object.keys(playerStats).length} zawodników (${allRecords.length} wpisów)</h3>`;
 
     html += `
@@ -63,6 +66,40 @@ async function loadFullStats() {
 
     html += `</tbody></table>`;
     tableDiv.innerHTML = html;
+
+    // === WYKRES ===
+    const labels = sorted.map(item => item[0].split(' ').slice(0,2).join(' ')); // skrócone imiona
+    const percentages = sorted.map(item => Math.round((item[1].present / item[1].total) * 100));
+
+    if (myChart) myChart.destroy();
+
+    myChart = new Chart(document.getElementById("freqChart"), {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Frekwencja %',
+          data: percentages,
+          backgroundColor: percentages.map(p => p >= 85 ? '#4caf50' : p >= 70 ? '#ff9800' : '#f44336'),
+          borderColor: '#1565c0',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            title: { display: true, text: 'Frekwencja (%)' }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: 'Frekwencja zawodników' }
+        }
+      }
+    });
 
   } catch (e) {
     console.error("Błąd:", e);
